@@ -27,7 +27,6 @@ namespace applicazione_csharp
                 //Console.ReadLine legge stringhe, converto la variabile in un intero con Convert.ToInt32 (libreria System)
                 opzione = Convert.ToInt32(Console.ReadLine());
 
-
                 //switch case
                 switch (opzione)
                 {
@@ -74,6 +73,36 @@ namespace applicazione_csharp
 
             } while (opzione != 0);
         }
+
+        //le funzioni si mettono tra la fine del main e la fine di Program
+        static bool Aggiungi (string classe, string descrizione, string numero, string subalterno, string cap, string istat, double longit, double lat)
+        {
+            //leggo il file
+            StreamReader Leggi = new StreamReader ("Comune_Bergamo_-_Numerazione_civica.csv");
+            //ne scrivo uno nuovo, true = ios:app in c++
+            StreamWriter Scrivi = new StreamWriter ("file2.csv", true);
+            string riga;
+            //se il file da scrivere non è aperto ritorno falso
+            if (Scrivi == null)
+            {
+                return false;
+            }
+            //controllo che il file ci sia
+            if (File.Exists("Comune_Bergamo_-_Numerazione_civica.csv"))
+            {
+                //leggo tutte le righe se non sono vuote
+                while ((riga = Leggi.ReadLine()) != null)
+                {
+                    //copio la riga
+                    Scrivi.WriteLine(riga);
+                }
+            }
+            Scrivi.WriteLine(classe+","+descrizione+","+numero+","+subalterno+","+cap+","+istat+","+longit+","+lat+",\"("+longit+","+lat+")\"");
+            //chiudo entrambi i file
+            Leggi.Close();
+            Scrivi.Close();
+
+            return true;
+        }
     }
 }
-
