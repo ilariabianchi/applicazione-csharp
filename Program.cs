@@ -27,52 +27,53 @@ namespace applicazione_csharp
                 //Console.ReadLine legge stringhe, converto la variabile in un intero con Convert.ToInt32 (libreria System)
                 opzione = Convert.ToInt32(Console.ReadLine());
 
+
+                //switch case
+                switch (opzione)
+                {
+                    case 1:
+                        Console.Write("\ninserisci i dati della via che vuoi aggiungere:\n");
+                        Console.Write("classe: ");
+                        //con ToUpper trasformo tutte le stringhe in maiuscolo
+                        classe = Console.ReadLine().ToUpper();
+                        Console.Write("descrizione: ");
+                        descrizione= Console.ReadLine().ToUpper();
+                        Console.Write("numero: ");
+                        numero = Console.ReadLine().ToUpper();
+                        Console.Write("subalterno: ");
+                        subalterno = Console.ReadLine().ToUpper();
+                        Console.Write("cap: ");
+                        cap = Console.ReadLine().ToUpper();
+                        Console.Write("istat: ");
+                        istat = Console.ReadLine().ToUpper();
+                        Console.Write("latitudine: ");
+                        //converto a double
+                        latitudine = Convert.ToDouble(Console.ReadLine());
+                        Console.Write("longitudine: ");
+                        //converto a double
+                        longitudine = Convert.ToDouble(Console.ReadLine());
+                        break;
+
+                    case 2:
+                        Console.Write("\ninserisci i dati della via che vuoi modificare:\n");
+                        Console.Write("descrizione: ");
+                        //prendo in input la descrizione e la trasformo in maiuscolo
+                        descrizione = Console.ReadLine().ToUpper();
+                        Console.Write("numero: ");
+                        numero = Console.ReadLine();
+                        break;
+
+                    case 3:
+                        Console.Write("\ninserisci i dati della via che vuoi cancellare:\n");
+                        Console.Write("descrizione: ");
+                        descrizione = Console.ReadLine().ToUpper();
+                        Console.Write("numero: ");
+                        numero = Console.ReadLine();
+                        break;
+                }
+
             } while (opzione != 0);
-
-            //switch case
-            switch (opzione)
-            {
-                case 1:
-                    Console.Write("\ninserisci i dati della via che vuoi aggiungere:\n");
-                    Console.Write("classe: ");
-                    //con ToUpper trasformo tutte le stringhe in maiuscolo
-                    classe = Console.ReadLine().ToUpper();
-                    Console.Write("descrizione: ");
-                    descrizione= Console.ReadLine().ToUpper();
-                    Console.Write("numero: ");
-                    numero = Console.ReadLine().ToUpper();
-                    Console.Write("subalterno: ");
-                    subalterno = Console.ReadLine().ToUpper();
-                    Console.Write("cap: ");
-                    cap = Console.ReadLine().ToUpper();
-                    Console.Write("istat: ");
-                    istat = Console.ReadLine().ToUpper();
-                    Console.Write("latitudine: ");
-                    //converto a double
-                    latitudine = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("longitudine: ");
-                    //converto a double
-                    longitudine = Convert.ToDouble(Console.ReadLine());
-                    break;
-
-                case 2:
-                    Console.Write("\ninserisci i dati della via che vuoi modificare:\n");
-                    Console.Write("descrizione: ");
-                    //prendo in input la descrizione e la trasformo in maiuscolo
-                    descrizione = Console.ReadLine().ToUpper();
-                    Console.Write("numero: ");
-                    numero = Console.ReadLine();
-                    break;
-
-                case 3:
-                    Console.Write("\ninserisci i dati della via che vuoi cancellare:\n");
-                    Console.Write("descrizione: ");
-                    descrizione = Console.ReadLine().ToUpper();
-                    Console.Write("numero: ");
-                    numero = Console.ReadLine();
-                    break;
-            }
-
         }
     }
 }
+
