@@ -89,6 +89,7 @@ namespace applicazione_csharp
         }
 
         //le funzioni si mettono tra la fine del main e la fine di Program
+        //funzione AGGIUNGI
         static bool Aggiungi (string classe, string descrizione, string numero, string subalterno, string cap, string istat, double longit, double lat)
         {
             //leggo il file
@@ -104,7 +105,7 @@ namespace applicazione_csharp
             //controllo che il file ci sia
             if (File.Exists("Comune_Bergamo_-_Numerazione_civica.csv"))
             {
-                //leggo tutte le righe se non sono vuote
+                //leggo tutte le righe fino alla fine del file
                 while ((riga = Leggi.ReadLine()) != null)
                 {
                     //copio la riga
@@ -118,6 +119,48 @@ namespace applicazione_csharp
 
             return true;
         }
-    }
+
+        //funzione MODIFICA
+        static bool Modifica (int posiz, string classe, string descrizione, string numero, string subalterno, string cap, string istat, double longit, double lat)
+        {
+            //leggo il file
+            StreamReader Leggi = new StreamReader("Comune_Bergamo_-_Numerazione_civica.csv");
+            //ne scrivo uno nuovo
+            StreamWriter Scrivi = new StreamWriter("file2.csv");
+            string riga;
+            //salto la prima riga
+            riga = Console.ReadLine();
+            Scrivi.WriteLine(riga);
+            int i = 0;
+            //se il file da scrivere non è aperto ritorno falso
+            if (Scrivi == null)
+            {
+                return false;
+            }
+            //controllo che il file ci sia
+            if (File.Exists("Comune_Bergamo_-_Numerazione_civica.csv"))
+            {
+                //leggo tutte le righe fino alla fine del file
+                while ((riga = Leggi.ReadLine()) != null)
+                {
+                    if (i != posiz)
+                    {
+                        //se non trovo quello che voglio modificare continuo a copiare
+                        Scrivi.WriteLine(riga);
+
+                    }
+                    else
+                    {
+                        //quando lo trovo scrivo la riga modificata
+                        Scrivi.WriteLine(classe + "," + descrizione + "," + numero + "," + subalterno + "," + cap + "," + istat + "," + longit + "," + lat + ",\"(" + longit + "," + lat + ")\"");
+
+                    }
+                    i++;
+                }
+
+            }
+            return true;
+        }
+    } 
 }
 
