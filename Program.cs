@@ -51,6 +51,20 @@ namespace applicazione_csharp
                         Console.Write("longitudine: ");
                         //converto a double
                         longitudine = Convert.ToDouble(Console.ReadLine());
+                        //richiamo funzione
+                        bool inserisci = Aggiungi(classe, descrizione, numero, subalterno, cap, istat, latitudine, longitudine);
+                        if (inserisci)
+                        {
+                            //cancello il file
+                            File.Delete("Comune_Bergamo_-_Numerazione_civica.csv");
+                            //in c# il rename del c++ si fa con File.Move
+                            File.Move("file2.csv", "Comune_Bergamo_-_Numerazione_civica.csv");
+                            Console.Write("\nelemento aggiunto\n\n");
+                        }
+                        else
+                        {
+                            Console.Write("\nerrore nell'inserimento\n\n");
+                        }
                         break;
 
                     case 2:
@@ -106,3 +120,4 @@ namespace applicazione_csharp
         }
     }
 }
+
