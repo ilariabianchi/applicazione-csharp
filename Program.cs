@@ -161,6 +161,38 @@ namespace applicazione_csharp
             }
             return true;
         }
+
+        //funzione Cancella
+        static bool Cancella (int posiz)
+        {
+            //leggo il file
+            StreamReader Leggi = new StreamReader("Comune_Bergamo_-_Numerazione_civica.csv");
+            //ne scrivo uno nuovo
+            StreamWriter Scrivi = new StreamWriter("file2.csv");
+            string riga;
+            //salto la prima riga
+            riga = Console.ReadLine();
+            Scrivi.WriteLine(riga);
+            int i = 0;
+            //se il file da scrivere non è aperto ritorno falso
+            if (Scrivi == null)
+            {
+                return false;
+            }
+            if (File.Exists("Comune_Bergamo_-_Numerazione_civica.csv"))
+            {
+                while ((riga = Leggi.ReadLine()) != null)
+                {
+                    //finchè non trovo quello che sto cercando lo copio e quello da eliminare lo salto e non faccio nulla
+                    if (i != posiz)
+                    {
+                        Scrivi.WriteLine(riga);
+                    }
+                    i++;
+                }
+            }
+            return false;
+        }
     } 
 }
 
