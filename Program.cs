@@ -89,6 +89,43 @@ namespace applicazione_csharp
         }
 
         //le funzioni si mettono tra la fine del main e la fine di Program
+
+        //funzione Cerca
+        static int Cerca (string descrizione, string numero)
+        {
+            //leggo il file
+            StreamReader Leggi = new StreamReader("Comune_Bergamo_-_Numerazione_civica.csv");
+            string riga, desc, num;
+            //salto le prima riga di intestazione
+            riga = Console.ReadLine();
+            int i = 0;
+            //leggo tutte le righe fino alla fine del file
+            while ((riga = Leggi.ReadLine()) != null)
+            {
+                //Split divide la riga in tanti pezzi ogni volta che è separato dalla virgola e la riga diventa un array di stringhe
+                string[] campi = riga.Split(',');
+                //campi[0] è la classe e la salto
+                desc = campi[1];
+                num = campi[2];
+                //controllo che corrispondano a quello che sto cercando
+                if (desc == descrizione && num == numero)
+                {
+                    //chiudo
+                    Leggi.Close();
+                    //restituisco la posizione
+                    return i;
+                }
+
+                //se non corrisponde vado avanti alla prossima riga
+                i++;
+            }
+
+            //chiudo il file
+            Leggi.Close();
+            //se non trovo nulla restituisco -1
+            return -1;
+        }
+
         //funzione AGGIUNGI
         static bool Aggiungi (string classe, string descrizione, string numero, string subalterno, string cap, string istat, double longit, double lat)
         {
