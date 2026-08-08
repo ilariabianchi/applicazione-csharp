@@ -74,7 +74,53 @@ namespace applicazione_csharp
                         descrizione = Console.ReadLine().ToUpper();
                         Console.Write("numero: ");
                         numero = Console.ReadLine();
-                        break;
+                        //cerco nel file se la via è presente
+                        int posiz = Cerca(descrizione, numero);
+                        if (posiz != -1)
+                        {
+                            Console.Write("\ninserisci i dati modificati:\n");
+                            Console.Write("classe: ");
+                            //con ToUpper trasformo tutte le stringhe in maiuscolo
+                            classe = Console.ReadLine().ToUpper();
+                            Console.Write("descrizione: ");
+                            descrizione = Console.ReadLine().ToUpper();
+                            Console.Write("numero: ");
+                            numero = Console.ReadLine().ToUpper();
+                            Console.Write("subalterno: ");
+                            subalterno = Console.ReadLine().ToUpper();
+                            Console.Write("cap: ");
+                            cap = Console.ReadLine().ToUpper();
+                            Console.Write("istat: ");
+                            istat = Console.ReadLine().ToUpper();
+                            Console.Write("latitudine: ");
+                            //converto a double
+                            latitudine = Convert.ToDouble(Console.ReadLine());
+                            Console.Write("longitudine: ");
+                            //converto a double
+                            longitudine = Convert.ToDouble(Console.ReadLine());
+                            //richiamo la funzione
+                            bool mod = Modifica(posiz, classe, descrizione, numero, subalterno, cap, istat, longitudine, latitudine);
+                            if (mod)
+                            {
+                                //se va a buon fine cancello il vecchio file e rinomino il nuovo
+                                //cancello il file
+                                File.Delete("Comune_Bergamo_-_Numerazione_civica.csv");
+                                //in c# il rename del c++ si fa con File.Move
+                                File.Move("file2.csv", "Comune_Bergamo_-_Numerazione_civica.csv");
+                                Console.Write("\nmodifica effettuata\n\n");
+                            }
+                            else
+                            {
+                                Console.Write("\nerrore nella modifica\n\n");
+                            }
+                        }
+                        else
+                        {
+                            Console.Write("\nelemento non trovato\n\n");
+                        }
+
+
+                            break;
 
                     case 3:
                         Console.Write("\ninserisci i dati della via che vuoi cancellare:\n");
